@@ -1,0 +1,13 @@
+[Unit]
+Description=Docker Application Container Engine
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+EnvironmentFile=INSTALLDIR/environment
+ExecStart=INSTALLDIR/run.sh
+ExecReload=/bin/kill -s HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
